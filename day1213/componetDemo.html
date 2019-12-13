@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"> 
+
+       <!-- <h1>{{article.title}}</h1>
+       <h2>作者：{{article.author}}</h2>
+       <h3>{{article.publishDate}}</h3>
+       <p>
+           <img :src="article.imgSrc"  style="width:100px;height:100px">
+           {{article.content}}
+       </p> -->
+       <!-- heart是组件的一个属性 -->
+       <!-- <guolele v-bind:heart="article"></guolele>
+       <guolele v-bind:heart="article2"></guolele> -->
+       <!-- <guolele v-for="article in articleList":key="article.title" :heart="article"></guolele>
+     -->
+     <guolele v-for="article in articleList":key="article.title" :heart="article">
+         <h1></h1>
+     </guolele>
+      
+    </div>
+    
+    <script>
+        //定义guolele自定义组件
+        //第一个参数是自定义组件的标签名称，第二个参数是定义该组件的运行规则对象
+        Vue.component('guolele',{
+            props:['heart'],
+            //template中定义的是组件的模板，也就是html和{{}}以及vue指令的组合
+            //template必须要有根标签 
+            template:'<div>'+
+                        '<h1 style="color:red">{{heart.title}}</h1>'+
+                        '<h2>{{heart.author}}</h2>'+
+                        '<h3>{{heart.publishDate}}</h3>'+
+                        '<p>{{heart.content}}</p>'+
+                     '</div>'
+        });
+        
+       var app = new Vue({
+           el:"#app",
+           data:{
+              
+            
+               articleList:[
+               {
+                   title:"论峭壁罗的年龄",
+                   author:"郭乐乐",
+                   publishDate:"2019-12-13",
+                   content:"根据我多年的经验，峭壁罗和我差不多大，也就20岁"
+                  
+               },
+               {
+                   title:"vue初学笔记",
+                   author:"郭乐乐",
+                   publishDate:"2019-12-13",
+                   content:"vue使用个渐进式前端框架"
+                  
+               },
+               {
+                   title:"我的恋爱日记",
+                   author:"郭乐乐",
+                   publishDate:"2019-12-13",
+                   content:"我又被甩了"
+                  
+               },
+               {
+                   title:"我的恋爱总结",
+                   author:"郭乐乐",
+                   publishDate:"2019-12-13",
+                   content:"我不够优秀了，太体贴了不够坏"
+                  
+               }
+
+               ]
+
+
+               }
+           })
+                          
+             
+
+
+    </script>
+</body>
+</html>

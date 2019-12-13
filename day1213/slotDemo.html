@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"> 
+
+       <!-- <h1>{{article.title}}</h1>
+       <h2>作者：{{article.author}}</h2>
+       <h3>{{article.publishDate}}</h3>
+       <p>
+           <img :src="article.imgSrc"  style="width:100px;height:100px">
+           {{article.content}}
+       </p> -->
+       <!-- heart是组件的一个属性 -->
+       <!-- <guolele v-bind:heart="article"></guolele>
+       <guolele v-bind:heart="article2"></guolele> -->
+       <!-- <guolele v-for="article in articleList":key="article.title" :heart="article"></guolele>
+     -->
+     <guolele-v2>
+       <template v-slot:title>
+           {{article.title}}
+       </template>
+       <template v-slot:author>
+            {{article.author}}
+        </template>
+        <template v-slot:data>
+                {{article.publishDate}}
+        </template>
+        {{article.content}}
+     </guolele-v2>
+     
+      
+    </div>
+    
+    <script>
+        //定义guolele自定义组件
+        //第一个参数是自定义组件的标签名称，第二个参数是定义该组件的运行规则对象
+        Vue.component('guolele-v2',{
+            
+            //template中定义的是组件的模板，也就是html和{{}}以及vue指令的组合
+            //template必须要有根标签 
+
+            //指定插槽方法，4个插槽
+            template:'<div>'+
+                    '<h1><slot name="title"></slot></h1>'+
+                    '<h2><slot name="author"></slot></h2>'+
+                    '<h3><slot name="data"></slot></h3>'+
+                    '<p><slot></slot></p>'+
+                     '</div>'
+        });
+        
+       var app = new Vue({
+           el:"#app",
+           data:{
+            article:{
+               
+                   title:"论峭壁罗的年龄",
+                   author:"郭乐乐",
+                   publishDate:"2019-12-13",
+                   content:"根据我多年的经验，峭壁罗和我差不多大，也就20岁"
+                  
+               
+               }
+               
+
+               
+
+
+               }
+           })
+                          
+             
+
+
+    </script>
+</body>
+</html>
